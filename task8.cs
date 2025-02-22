@@ -36,6 +36,8 @@ class Student
         get {return grade; }
         set {grade = value; }
     }
+
+     
 }
 
 class Teacher
@@ -77,6 +79,39 @@ class School
 
     public Teacher[] teachers = new Teacher[3];
 
+    public void Beststudents()
+    {
+        int max = 0;
+        for (int i = 0; i < this.students.Length; i++)
+        {
+            if (this.students[i].Grade > max)
+            {
+                max = this.students[i].Grade;
+            }
+        }
+
+        for (int i = 0; i < this.students.Length; i++)
+        {
+            if (this.students[i].Grade == max)
+            {
+                Console.WriteLine($"The best students are {this.students[i].Name} and grade is {this.students[i].Grade}");
+            }
+        }
+        Console.WriteLine();
+    } 
+
+    public void Bestteachers()
+    {
+        for (int i = 0; i < this.students.Length; i++)
+        {
+            if (this.teachers[i].Yearsofexperience <= 2)
+            {
+                Console.WriteLine($"The best teachers are {this.teachers[i].Name} and subject is {this.teachers[i].Subject}");
+            }
+        }
+            Console.WriteLine();
+
+    }
 
 }
 
@@ -94,31 +129,9 @@ class Program
         school.teachers[1] = new Teacher("Sindy","lecturer",2);
         school.teachers[2] = new Teacher("Jessica","lecturer",2);
 
-        int max = 0;
-        for (int i = 0; i < school.students.Length; i++)
-        {
-            if (school.students[i].Grade > max)
-            {
-                max = school.students[i].Grade;
-            }
-        }
-
-        for (int i = 0; i < school.students.Length; i++)
-        {
-            if (school.students[i].Grade == max)
-            {
-                Console.WriteLine($"The best students are {school.students[i].Name} and grade is {school.students[i].Grade}");
-            }
-        }
-
-        Console.WriteLine();
-        for (int i = 0; i < school.students.Length; i++)
-        {
-            if (school.teachers[i].Yearsofexperience <= 2)
-            {
-                Console.WriteLine($"The best students are {school.teachers[i].Name} and subject is {school.teachers[i].Subject}");
-            }
-        }
+       
+        school.Bestteachers();
+        school.Beststudents();
 
     }
 }
